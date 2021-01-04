@@ -8,6 +8,7 @@ const AuthTemplateBlock = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 30;
   background: rgba(0, 0, 0, 0.25);
   width: 100%;
   height: 100%;
@@ -36,12 +37,14 @@ const AuthTemplateBox = styled.div`
   /* align-items: center; */
 `;
 
-const AuthTemplate = ({ children }) => {
+const AuthTemplate = ({ children, visible }) => {
+  if (!visible) return null;
   return (
     <AuthTemplateBlock>
       <AuthTemplateBox>
         <div className="logo">
-          <Link to="/">Home</Link>
+          {/* <Link to="/"></Link> */}
+          Home
         </div>
         {children}
       </AuthTemplateBox>

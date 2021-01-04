@@ -2,10 +2,10 @@ import React from 'react';
 import AuthTemplate from '../components/auth/AuthTemplate';
 import AuthForm from '../components/auth/AuthForm';
 
-const LoginPage = () => {
+const LoginPage = ({ visible, onLogin, onCancel }) => {
   return (
-    <AuthTemplate>
-      <AuthForm />
+    <AuthTemplate visible={visible} onLogin={onLogin} onCancel={onCancel}>
+      <AuthForm type="login" />
     </AuthTemplate>
   );
 };

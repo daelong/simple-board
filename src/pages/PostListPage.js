@@ -1,7 +1,15 @@
 import React from 'react';
+import Navigation from '../components/common/Navigation';
+import PostList from '../components/post/PostList';
+import PostListTemplate from '../components/post/PostListTemplate';
 
 const PostListPage = () => {
-  return <div>포스트 리스트 페이지</div>;
+  return (
+    <PostListTemplate>
+      <Navigation />
+      <PostList />
+    </PostListTemplate>
+  );
 };
 
 export default PostListPage;
