@@ -5,10 +5,12 @@ import PostListTemplate from '../components/post/PostListTemplate';
 
 const PostListPage = () => {
   return (
-    <PostListTemplate>
-      <Navigation />
-      <PostList />
-    </PostListTemplate>
+    <>
+      <PostListTemplate>
+        <Navigation />
+        <PostList />
+      </PostListTemplate>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +40,14 @@ const textMap = {
   register: '회원가입',
 };
 
-const AuthForm = ({ type, onLogin, onCancel }) => {
+const AuthForm = ({ onLogin, onCancel }) => {
+  const [type, setType] = useState('login');
+  const onTypeLogin = () => {
+    setType('login');
+  };
+  const onTypeRegister = () => {
+    setType('register');
+  };
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -56,13 +63,8 @@ const AuthForm = ({ type, onLogin, onCancel }) => {
       )}
       <Button onClick={onLogin}>{text}</Button>
       <Button onClick={onCancel}>닫기</Button>
-      <Footer>
-        {type === 'login' ? (
-          <Link to="/register">회원가입</Link>
-        ) : (
-          <Link to="/login">로그인</Link>
-        )}
-      </Footer>
+      {type === 'login' && <Footer onClick={onTypeRegister}>회원가입</Footer>}
+      {type === 'register' && <Footer onClick={onTypeLogin}>로그인</Footer>}
     </AuthFormBlock>
   );
 };
