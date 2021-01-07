@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const AuthFormBlock = styled.div`
   margin-top: 10px;
@@ -40,29 +39,53 @@ const textMap = {
   register: '회원가입',
 };
 
-const AuthForm = ({ onLogin, onCancel }) => {
-  const [type, setType] = useState('login');
-  const onTypeLogin = () => {
-    setType('login');
-  };
-  const onTypeRegister = () => {
-    setType('register');
-  };
+const AuthForm = ({
+  type,
+  form,
+  onLogin,
+  onCancel,
+  onTypeLogin,
+  onTypeRegister,
+  onChange,
+  onSubmit,
+}) => {
+  // const [type, setType] = useState(type);
+  // const onTypeLogin = () => {
+  //   setType('login');
+  // };
+  // const onTypeRegister = () => {
+  //   setType('register');
+  // };
   const text = textMap[type];
   return (
     <AuthFormBlock>
       <div>{text}</div>
-      <AuthFormInput name="username" placeholder="아이디" />
-      <AuthFormInput name="password" type="password" placeholder="비밀번호" />
-      {type === 'register' && (
+      <form onSubmit={onSubmit}>
         <AuthFormInput
-          name="passwordConfirm"
-          type="password"
-          placeholder="비밀번호확인"
+          name="username"
+          placeholder="아이디"
+          onChange={onChange}
+          value={form.username}
         />
-      )}
-      <Button onClick={onLogin}>{text}</Button>
-      <Button onClick={onCancel}>닫기</Button>
+        <AuthFormInput
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          onChange={onChange}
+          value={form.password}
+        />
+        {type === 'register' && (
+          <AuthFormInput
+            name="passwordConfirm"
+            type="password"
+            placeholder="비밀번호확인"
+            onChange={onChange}
+            value={form.passwordConfirm}
+          />
+        )}
+        <Button onClick={onLogin}>{text}</Button>
+        <Button onClick={onCancel}>닫기</Button>
+      </form>
       {type === 'login' && <Footer onClick={onTypeRegister}>회원가입</Footer>}
       {type === 'register' && <Footer onClick={onTypeLogin}>로그인</Footer>}
     </AuthFormBlock>

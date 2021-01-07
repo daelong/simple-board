@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import AuthTemplate from '../auth/AuthTemplate';
-import AuthForm from '../auth/AuthForm';
+// import AuthForm from '../auth/AuthForm';
+import LoginForm from '../../containers/auth/LoginForm';
+import RegisterForm from '../../containers/auth/RegisterForm';
 
 const NavigationTeplate = styled.div`
   margin: 0;
@@ -37,6 +39,17 @@ const Navigation = () => {
   const onLogin = () => {
     setModal(false);
   };
+  const [type, setType] = useState('login');
+  const onTypeLogin = () => {
+    setType('login');
+    // type = 'login';
+    // console.log('login');
+  };
+  const onTypeRegister = () => {
+    setType('register');
+    // type = 'register';
+    // console.log('register');
+  };
   return (
     <NavigationTeplate>
       <LogoBox>
@@ -51,7 +64,25 @@ const Navigation = () => {
           로그인
         </div>
         <AuthTemplate visible={modal}>
-          <AuthForm onLogin={onLogin} onCancel={onCancel} type="login" />
+          {/* <AuthForm onLogin={onLogin} onCancel={onCancel} type="login" /> */}
+          {type === 'login' && (
+            <LoginForm
+              type={type}
+              onTypeLogin={onTypeLogin}
+              onTypeRegister={onTypeRegister}
+              onLogin={onLogin}
+              onCancel={onCancel}
+            />
+          )}
+          {type === 'register' && (
+            <RegisterForm
+              type={type}
+              onTypeLogin={onTypeLogin}
+              onTypeRegister={onTypeRegister}
+              onLogin={onLogin}
+              onCancel={onCancel}
+            />
+          )}
         </AuthTemplate>
       </Menu>
     </NavigationTeplate>
